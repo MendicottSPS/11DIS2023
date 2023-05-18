@@ -12,6 +12,7 @@ def index(): # This is the function that will be called when the user visits the
         artist_name = request.form['artist']
         # We can then use this data to search for albums using the search_albums function
         albums = search_albums(artist_name)
+        save_albums_to_db(artist_name, albums)
         # We can then pass this data to the results.html template
         return render_template('results.html', artist=artist_name, albums=albums)
     # If the user visits the index page without submitting the form,
@@ -44,8 +45,7 @@ def save_albums_to_db(artist_name, albums):
     conn.close()
 
 
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)
+
+# port=5000/5001

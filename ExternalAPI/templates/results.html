@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Albums for {{ artist }}</h1>
+    <a class="button" href="/">Search in alphabetical order</a>
+    <a class="button" href="/">Search by year</a>
+    <div>
+    </div>
         <table>
             <thead>
                 <tr>
@@ -13,6 +17,7 @@
                     <th>Release Year</th>
                     <th>Genre</th>
                     <th>Label</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +27,7 @@
                     <td>{{ album.intYearReleased }}</td>
                     <td>{{ album.strGenre }}</td>
                     <td>{{ album.strLabel }}</td>
+                    <td>{{ album.strDescriptionEN }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
