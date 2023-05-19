@@ -5,33 +5,40 @@
     <title>Music Albums Search</title>
 </head>
 <body>
-    <h1>Albums for {{ artist }}</h1>
-    <a class="button" href="/">Search in alphabetical order</a>
-    <a class="button" href="/">Search by year</a>
+    <h1>Albums for <b>{{ artist }}</b></h1>
+    <form method="POST" action="/sort-alphabetical">
+        <input type="hidden" name="artist" value="{{ artist }}">
+        <button type="submit">Sort Alphabetically</button>
+    </form>
+    <br>
+    <form method="POST" action="/sort-year">
+        <input type="hidden" name="artist" value="{{ artist }}">
+        <button type="submit">Sort by Year Released</button>
+</form>
     <div>
     </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Album Name</th>
-                    <th>Release Year</th>
-                    <th>Genre</th>
-                    <th>Label</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for album in albums|sort(attribute='intYearReleased')%}
-                <tr>
-                    <td>{{ album.strAlbum }}</td>
-                    <td>{{ album.intYearReleased }}</td>
-                    <td>{{ album.strGenre }}</td>
-                    <td>{{ album.strLabel }}</td>
-                    <td>{{ album.strDescriptionEN }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Album Name</th>
+                <th>Release Year</th>
+                <th>Genre</th>
+                <th>Label</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for album in albums %}
+            <tr>
+                <td>{{ album.strAlbum }}</td>
+                <td>{{ album.intYearReleased }}</td>
+                <td>{{ album.strGenre }}</td>
+                <td>{{ album.strLabel }}</td>
+                <td>{{ album.strDescriptionEN }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <a href="/">Search another artist</a>
 </body>
 </html>

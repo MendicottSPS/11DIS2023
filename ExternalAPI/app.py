@@ -33,6 +33,23 @@ def search_albums(artist_name):
     return albums
 
 
+@app.route('/sort-alphabetical', methods=['POST'])
+def sort_alphabetical():
+    artist_name = request.form['artist']
+    albums = search_albums(artist_name)
+    sorted_albums = sorted(albums, key=lambda album: album['strAlbum'])
+    return render_template('results.html', artist=artist_name, albums=sorted_albums)
+
+
+@app.route('/sort-year', methods=['POST'])
+def sort_year():
+    artist_name = request.form['artist']
+    albums = search_albums(artist_name)
+    sorted_albums = sorted(albums, key=lambda album: album['intYearReleased'])
+    return render_template('results.html', artist=artist_name, albums=sorted_albums)
+
+
+
 def save_albums_to_db(artist_name, albums):
     conn = sqlite3.connect('albums.db')
     c = conn.cursor()
@@ -48,4 +65,4 @@ def save_albums_to_db(artist_name, albums):
 if __name__ == '__main__':
     app.run(debug=True)
 
-# port=5000/5001
+# port=5000/5001 for use when at home
