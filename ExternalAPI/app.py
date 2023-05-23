@@ -46,6 +46,7 @@ def sort_year():
     artist_name = request.form['artist']
     albums = search_albums(artist_name)
     sorted_albums = sorted(albums, key=lambda album: album['intYearReleased'])
+    # Sort in a different way - avoid lambda
     return render_template('results.html', artist=artist_name, albums=sorted_albums)
 
 
